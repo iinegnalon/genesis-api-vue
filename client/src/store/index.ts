@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { EntityType } from '@/models/enum/entityType.ts';
-import { EntityInfo } from '@/models/dto/entityInfo.ts';
+import { EntityInfo } from '@/models/entityInfo.ts';
 
 export const useMainStore = defineStore('main', {
   state: (): MainStore => ({

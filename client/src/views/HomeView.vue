@@ -6,7 +6,7 @@ import EntityCard from '@/components/EntityCard.vue';
 import { useMainStore } from '@/store';
 import { EntityType } from '@/models/enum/entityType.ts';
 import { AxiosError } from 'axios';
-import { EntityInfo } from '@/models/dto/entityInfo.ts';
+import { EntityInfo } from '@/models/entityInfo.ts';
 import { createEntityFunction } from '@/utils';
 
 const mainStore = useMainStore();
