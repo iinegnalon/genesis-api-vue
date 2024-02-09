@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
     disabled?: boolean;
@@ -23,9 +23,9 @@ function handleClick() {
 
 <template>
   <button
+    :class="{ 'app-button_disabled': disabled, 'app-button_loading': loading }"
     :disabled="disabled"
     class="app-button"
-    :class="{ 'app-button_disabled': disabled, 'app-button_loading': loading }"
     @click="handleClick"
   >
     <span class="app-button__content"><slot></slot></span>

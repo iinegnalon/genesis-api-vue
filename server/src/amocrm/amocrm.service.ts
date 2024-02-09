@@ -19,6 +19,18 @@ export class AmoCRMService {
     return this.configService.get<string>('AMOCRM_BASE_DOMAIN');
   }
 
+  createLead(): Observable<AxiosResponse<string>> {
+    return this.createEntity('leads');
+  }
+
+  createContact(): Observable<AxiosResponse<string>> {
+    return this.createEntity('contacts');
+  }
+
+  createCompany(): Observable<AxiosResponse<string>> {
+    return this.createEntity('companies');
+  }
+
   private createEntity(endpoint: string): Observable<AxiosResponse<string>> {
     const accessToken = this.getAccessToken();
     const baseDomain = this.getBaseDomain();
@@ -61,17 +73,5 @@ export class AmoCRMService {
           throw error;
         }),
       );
-  }
-
-  createLead(): Observable<AxiosResponse<string>> {
-    return this.createEntity('leads');
-  }
-
-  createContact(): Observable<AxiosResponse<string>> {
-    return this.createEntity('contacts');
-  }
-
-  createCompany(): Observable<AxiosResponse<string>> {
-    return this.createEntity('companies');
   }
 }

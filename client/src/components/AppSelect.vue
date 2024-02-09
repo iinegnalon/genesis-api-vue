@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { defineProps, defineEmits, withDefaults, ref, watch } from 'vue';
+<script lang="ts" setup>
+import { defineEmits, defineProps, ref, watch, withDefaults } from 'vue';
 
 const props = withDefaults(
   defineProps<{
@@ -28,9 +28,9 @@ function handleChange() {
 <template>
   <select
     v-model="selected"
+    :class="{ 'app-select_disabled': disabled }"
     :disabled="disabled"
     class="app-select"
-    :class="{ 'app-select_disabled': disabled }"
     @change="handleChange"
   >
     <option v-for="(item, index) in items" :key="index">

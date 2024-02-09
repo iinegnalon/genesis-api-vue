@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import AppButton from '@/components/AppButton.vue';
 import { onMounted, ref } from 'vue';
 import AppSelect from '@/components/AppSelect.vue';
@@ -67,9 +67,9 @@ function handleSelect() {
   <div class="home-page">
     <h1>Создание сущностей</h1>
     <AppSelect
-      @change="handleSelect"
       v-model="selectedOption"
       :items="options"
+      @change="handleSelect"
     />
     <AppButton
       :disabled="mainStore.entityType == EntityType.none"
@@ -82,15 +82,15 @@ function handleSelect() {
     <div class="entity-grid">
       <EntityCard
         v-for="entity in mainStore.createdEntities"
-        :key="entity.id"
         :id="entity.id"
+        :key="entity.id"
         :type="entity.type"
       />
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .home-page {
   display: flex;
   flex-direction: column;
