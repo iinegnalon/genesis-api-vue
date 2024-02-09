@@ -8,14 +8,14 @@ const apiInstance = axios.create({
   },
 });
 
-export async function createLeads() {
-  return await apiInstance.post<string>('/leads');
+export function createLeads() {
+  return apiInstance.post<string>('/leads');
 }
 
-export async function createContacts() {
-  return await apiInstance.post<string>('/contacts');
+export function createContacts() {
+  return apiInstance.post<string>('/contacts');
 }
 
-export async function createCompanies() {
-  return await apiInstance.post<string>('/companies');
+export function createCompanies() {
+  return apiInstance.post<string>('/companies');
 }

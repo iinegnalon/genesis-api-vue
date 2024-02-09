@@ -23,6 +23,20 @@ export class AmoCRMService {
     const accessToken = this.getAccessToken();
     const baseDomain = this.getBaseDomain();
 
+    if (!accessToken) {
+      throw new HttpException(
+        'Add AMOCRM_ACCESS_TOKEN to .env',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
+    if (!baseDomain) {
+      throw new HttpException(
+        'Add AMOCRM_BASE_DOMAIN to .env',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     const headers = {
       Authorization: `Bearer ${accessToken}`,
       'Content-Type': 'application/json',

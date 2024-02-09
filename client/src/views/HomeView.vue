@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import AppButton from '@/components/AppButton.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import AppSelect from '@/components/AppSelect.vue';
 import EntityCard from '@/components/EntityCard.vue';
 import { useMainStore } from '@/store';
 import { EntityType } from '@/models/enum/entityType.ts';
 import { AxiosError } from 'axios';
 import { EntityInfo } from '@/models/dto/entityInfo.ts';
-import { createLeads } from '@/api';
 import { createEntityFunction } from '@/utils';
 
 const mainStore = useMainStore();
@@ -21,6 +20,18 @@ const options = [
 ];
 const selectedOption = ref(options[0]);
 const errorMessage = ref('');
+
+onMounted(() => {
+  checkEnv();
+});
+
+function checkEnv() {
+  if (!import.meta.env.VITE_API_ENDPOINT) {
+    {
+      errorMessage.value = 'Add VITE_API_ENDPOINT to .env';
+    }
+  }
+}
 
 async function handleClick() {
   errorMessage.value = '';
@@ -38,7 +49,7 @@ async function handleClick() {
     mainStore.addEntity(entityInfo);
   } catch (e: unknown) {
     if (e instanceof AxiosError) {
-      errorMessage.value = e.message;
+      errorMessage.value = e.response?.data.message ?? e.message;
     } else {
       errorMessage.value = 'Something went wrong. Please try again';
     }
