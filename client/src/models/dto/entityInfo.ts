@@ -1,4 +1,4 @@
-export interface EntityDTO {
+export interface EntityInfo {
   id: string;
   type: string;
 }

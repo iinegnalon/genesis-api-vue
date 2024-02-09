@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import type { EntityDTO } from '@/models/dto/entityDTO';
 import { EntityType } from '@/models/enum/entityType.ts';
+import { EntityInfo } from '@/models/dto/entityInfo.ts';
 
 export const useMainStore = defineStore('main', {
   state: (): MainStore => ({
@@ -11,7 +11,7 @@ export const useMainStore = defineStore('main', {
     setEntityType(entityType: EntityType) {
       this.entityType = entityType;
     },
-    addEntity(entity: EntityDTO) {
+    addEntity(entity: EntityInfo) {
       this.createdEntities.push(entity);
     },
   },
@@ -19,5 +19,5 @@ export const useMainStore = defineStore('main', {
 
 interface MainStore {
   entityType: EntityType;
-  createdEntities: EntityDTO[];
+  createdEntities: EntityInfo[];
 }

@@ -5,6 +5,9 @@ import AppSelect from '@/components/AppSelect.vue';
 import EntityCard from '@/components/EntityCard.vue';
 import { useMainStore } from '@/store';
 import { EntityType } from '@/models/enum/entityType.ts';
+import { getHelloWorld } from '@/api';
+import { AxiosError } from 'axios';
+import { EntityInfo } from '@/models/dto/entityInfo.ts';
 
 const mainStore = useMainStore();
 
@@ -16,19 +19,31 @@ const options = [
   EntityType.company,
 ];
 const selectedOption = ref(options[0]);
+const errorMessage = ref('');
 
-function handleClick() {
+async function handleClick() {
+  errorMessage.value = '';
   loading.value = true;
 
-  // todo: send api call
-  setTimeout(() => {
-    mainStore.addEntity({
-      id: (mainStore.createdEntities.length + 1).toString(),
+  try {
+    const entityInfo: EntityInfo = {
+      id: '',
       type: mainStore.entityType,
-    });
+    };
 
-    loading.value = false;
-  }, 1000);
+    const response = await getHelloWorld(mainStore.entityType);
+    entityInfo.id = response.data;
+
+    mainStore.addEntity(entityInfo);
+  } catch (e: unknown) {
+    if (e instanceof AxiosError) {
+      errorMessage.value = e.message;
+    } else {
+      errorMessage.value = 'Something went wrong. Please try again';
+    }
+  }
+
+  loading.value = false;
 }
 
 function handleSelect() {
@@ -51,6 +66,7 @@ function handleSelect() {
     >
       Создать
     </AppButton>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
     <div class="entity-grid">
       <EntityCard
         v-for="entity in mainStore.createdEntities"
@@ -73,5 +89,9 @@ function handleSelect() {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 10px;
+}
+
+.error-message {
+  color: #b00020;
 }
 </style>
