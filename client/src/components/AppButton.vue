@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    disabled: boolean;
-    loading: boolean;
+    disabled?: boolean;
+    loading?: boolean;
   }>(),
   {
     disabled: false,
