@@ -33,4 +33,4 @@ AMOCRM_BASE_DOMAIN=base.domain
 VITE_API_ENDPOINT=http://localhost:3000
 ```
 
-
+![image](https://github.com/iinegnalon/genesis-api-vue/assets/56963054/129b499c-8a2b-470b-bc6e-756881f91d59)
