@@ -5,16 +5,17 @@ import AppSelect from '@/components/AppSelect.vue';
 import EntityCard from '@/components/EntityCard.vue';
 import { useMainStore } from '@/store';
 import { EntityType } from '@/models/enum/entityType.ts';
-import { getHelloWorld } from '@/api';
 import { AxiosError } from 'axios';
 import { EntityInfo } from '@/models/dto/entityInfo.ts';
+import { createLeads } from '@/api';
+import { createEntityFunction } from '@/utils';
 
 const mainStore = useMainStore();
 
 const loading = ref(false);
 const options = [
   EntityType.none,
-  EntityType.deal,
+  EntityType.lead,
   EntityType.contact,
   EntityType.company,
 ];
@@ -31,7 +32,7 @@ async function handleClick() {
       type: mainStore.entityType,
     };
 
-    const response = await getHelloWorld(mainStore.entityType);
+    const response = await createEntityFunction(mainStore.entityType);
     entityInfo.id = response.data;
 
     mainStore.addEntity(entityInfo);

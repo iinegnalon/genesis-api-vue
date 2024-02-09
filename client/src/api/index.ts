@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { EntityType } from '@/models/enum/entityType.ts';
 
 const apiInstance = axios.create({
   baseURL: import.meta.env.VITE_API_ENDPOINT,
@@ -9,8 +8,14 @@ const apiInstance = axios.create({
   },
 });
 
-export async function getHelloWorld(entityType: EntityType) {
-  return await apiInstance.post<string>('/entity', {
-    entityType,
-  });
+export async function createLeads() {
+  return await apiInstance.post<string>('/leads');
+}
+
+export async function createContacts() {
+  return await apiInstance.post<string>('/contacts');
+}
+
+export async function createCompanies() {
+  return await apiInstance.post<string>('/companies');
 }

@@ -1,6 +1,6 @@
 export enum EntityType {
   none = 'Не выбрано',
-  deal = 'Сделка',
+  lead = 'Сделка',
   contact = 'Контакт',
   company = 'Компания',
 }
