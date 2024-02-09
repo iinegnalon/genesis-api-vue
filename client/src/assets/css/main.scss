@@ -39,6 +39,7 @@ h1 {
 }
 
 button {
+  width: fit-content;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -55,10 +56,6 @@ button {
     color: var(--color-text);
     cursor: default;
   }
-}
-
-.card {
-  padding: 2em;
 }
 
 #app {

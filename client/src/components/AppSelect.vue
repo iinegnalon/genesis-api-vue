@@ -41,6 +41,7 @@ function handleChange() {
 
 <style lang="scss" scoped>
 .app-select {
+  width: fit-content;
   border-radius: 8px;
   border: 1px solid var(--color-text);
   padding: 0.6em 1.2em;
